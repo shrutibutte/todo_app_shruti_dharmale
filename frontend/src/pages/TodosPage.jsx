@@ -162,8 +162,12 @@ export default function TodosPage({ filter }) {
     try {
       await updateTodoStatus(id, status)
       toast.success('Task moved')
-    } catch {
-      toast.error('Failed to update task status')
+    } catch (err) {
+      const msg =
+        err.response?.data?.message ||
+        err.message ||
+        'Failed to update task status'
+      toast.error(msg)
     }
   }
 

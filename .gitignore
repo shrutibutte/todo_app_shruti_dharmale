@@ -42,3 +42,4 @@ vite.svg
 # Temporary files
 *.tmp
 *.bak
+frontend/

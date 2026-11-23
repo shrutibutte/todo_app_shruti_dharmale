@@ -109,8 +109,10 @@ export default function TaskDetailModal({
     try {
       await updateTodoStatus(todo._id, newStatus)
       toast.success(`Moved to ${STATUS_CONFIG[newStatus]?.label || newStatus}`)
-    } catch {
-      toast.error('Failed to update status')
+    } catch (err) {
+      const msg =
+        err.response?.data?.message || err.message || 'Failed to update status'
+      toast.error(msg)
     }
   }
 
@@ -118,8 +120,10 @@ export default function TaskDetailModal({
     try {
       await editTodo(todo._id, { category: newCategory })
       toast.success(`Category updated to ${newCategory}`)
-    } catch {
-      toast.error('Failed to update category')
+    } catch (err) {
+      const msg =
+        err.response?.data?.message || err.message || 'Failed to update category'
+      toast.error(msg)
     }
   }
 
